@@ -18,6 +18,21 @@ pipeline {
                 sh 'mvn clean install -DskipTests'
             }
         }
+
+        stage('Build docker image') {
+            steps {
+                sh 'docker build -t mraidiachref/gestion-projet:$GIT_COMMIT .'
+            }
+        }
+
+        stage('Push Docker Image') {   // plugin docker pipeline
+            steps {
+                withDockerRegistry(credentialsId: 'DOCKER_HUB_PAT', url: "") {
+                    sh 'docker push mraidiachref/gestion-projet:$GIT_COMMIT '
+                }
+            }
+
+        }
     }
 
     post {
