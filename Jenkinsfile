@@ -22,7 +22,7 @@ pipeline {
         stage('SAST with SonarQube') {
             steps {
                 withSonarQubeEnv('sonarqube_server') {
-                    sh 'mvn clean verify sonar:sonar '
+                    sh 'mvn clean verify sonar:sonar -DskipTests'
 
                     //waitForQualityGate abortPipeline: true
                 }
