@@ -4,7 +4,6 @@ pipeline {
     tools {
         maven 'maven-3.6.3'
         jdk 'JAVA_21'
-        SONAR_SCANNER_HOME = tool 'sonarqube7.3.0'
     }
 
 
